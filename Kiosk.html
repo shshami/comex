@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)https://cisco-ce.github.io/roomos-samples/kiosk-example/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiosk</title>
+  <!-- <link rel="icon" type="image/png" href="assets/logo.png"> -->
+  <link rel="stylesheet" href="./Kiosk_files/style.css">
+  <script src="./Kiosk_files/main.js" defer=""></script>
+  <script src="./Kiosk_files/alpine.js" defer=""></script>
+  <!-- <script src="https://unpkg.com/alpinejs" defer></script> -->
+</head>
+<body x-data="{ page, services, language, languages } = $store.model">
+  <div class="home-screen" x-show="page === &#39;home&#39;" style="display: none;">
+    <h1>Webex Bank</h1>
+
+    <h2 @click="page = &#39;service&#39;" class="touch-to-start">Touch to start</h2>
+
+    <div class="languages">
+      <template x-for="current in languages"></template><div class="language selected" x-text="current" @click="language = current" :class="language === current &amp;&amp; &#39;selected&#39;">english</div><div class="language" x-text="current" @click="language = current" :class="language === current &amp;&amp; &#39;selected&#39;">norwegian</div>
+    </div>
+  </div>
+
+  <div class="service" x-show="page === &#39;service&#39;" style="">
+    <h2>Choose Your Service</h2>
+    <div class="row">
+      <template x-for="service in services"></template><a class="service Loan" x-bind:href="&#39;sip:&#39;+ service.url" :class="service.name" href="sip:shshami@cisco.com">
+          <div class="avatar"></div>
+          <label x-text="service.name">Loan</label>
+        </a><a class="service Advice" x-bind:href="&#39;sip:&#39;+ service.url" :class="service.name" href="sip:2shshami@cisco.com">
+          <div class="avatar"></div>
+          <label x-text="service.name">Advice</label>
+        </a><a class="service Credit" x-bind:href="&#39;sip:&#39;+ service.url" :class="service.name" href="sip:3shshami@cisco.com">
+          <div class="avatar"></div>
+          <label x-text="service.name">Credit</label>
+        </a>
+    </div>
+    <button @click="page = &#39;home&#39;" class="back">Back</button>
+  </div>
+
+
+</body></html>
